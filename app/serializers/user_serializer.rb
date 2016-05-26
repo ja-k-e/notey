@@ -3,6 +3,6 @@ class UserSerializer < ActiveModel::Serializer
 
   has_many :notes
   class NoteSerializer < ActiveModel::Serializer
-    attributes :hashid
+    attributes :color, :message, :hashid
   end
 end
