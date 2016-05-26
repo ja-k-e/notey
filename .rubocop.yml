@@ -1,0 +1,46 @@
+Rails:
+  Enabled: true
+AllCops:
+  Include:
+    - Rakefile
+  Exclude:
+    - './config/routes.rb'
+    - './config/routes*'
+
+LineLength:
+  Max: 99
+
+# ruby 2.0 does not require this
+Encoding:
+  Enabled: false
+
+Documentation:
+  Description: 'Document classes and non-namespace modules.'
+  Enabled: false
+
+GlobalVars:
+  Description: 'Do not introduce global variables.'
+  Enabled: false
+
+ClassLength:
+  Description: 'Avoid classes longer than 100 lines of code.'
+  Enabled: false
+
+# we agreed to let rubocop warn us, but if we don't like this
+# we can debate
+IfUnlessModifier:
+  Description: >-
+                 Favor modifier if/unless usage when you have a
+                 single-line body.
+  Enabled: true
+
+MethodLength:
+  CountComments: false  # count full line comments?
+  Max: 25
+
+SignalException:
+  Description: 'Checks for proper usage of fail and raise.'
+  Enabled: false
+
+EachWithObject:
+  Enabled: false
