@@ -42,6 +42,8 @@ GEM
       tzinfo (~> 1.1)
     arel (6.0.3)
     builder (3.2.2)
+    emoji (1.0.5)
+      json
     erubis (2.7.0)
     globalid (0.3.6)
       activesupport (>= 4.1.0)
@@ -111,6 +113,7 @@ PLATFORMS
 
 DEPENDENCIES
   active_model_serializers (~> 0.10.0.rc2)
+  emoji
   hashid-rails
   pg
   rack-cors
