@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
   has_many :notes, inverse_of: :user, dependent: :destroy
 
-  validates :username, presence: true, uniqueness: true, length: { in: 3..20 }
+  validates :username, presence: true, uniqueness: true, length: { in: 3..40 }
 
   before_create :set_api_key
 

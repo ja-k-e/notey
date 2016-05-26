@@ -3,6 +3,6 @@ class UserSerializer < ActiveModel::Serializer
 
   has_many :notes
   class NoteSerializer < ActiveModel::Serializer
-    attributes :color, :message, :hashid
+    attributes :color, :message, :hashid, :slack_user
   end
 end

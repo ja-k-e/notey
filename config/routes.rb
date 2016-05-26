@@ -18,4 +18,6 @@ Rails.application.routes.draw do
     patch  '/:hashid' => 'notes#update'
     delete '/:hashid' => 'notes#destroy'
   end
+
+  post   '/slack'   => 'notes#slack'
 end

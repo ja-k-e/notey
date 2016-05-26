@@ -1,6 +1,7 @@
 class NotesController < ApplicationController
   before_action :authorize, only: [:create, :update]
   before_action :set_note, only: [:show, :update, :destroy]
+  before_action :authorize_slack, only: [:slack]
   before_action :authorize_owner, only: [:update, :destroy]
 
   def index
@@ -18,6 +19,24 @@ class NotesController < ApplicationController
 
     if @note.save
       render json: @note, status: :created
+    else
+      render json: @note.errors, status: :unprocessable_entity
+    end
+  end
+
+  def slack
+    @current_user = User.find_or_create_by(username: slack_note_params[:team_domain])
+
+    slack_params = {
+      slack_user: slack_note_params[:user_name],
+      message: slack_note_params[:text],
+      color: '#FFF'
+    }
+
+    @note = @current_user.notes.new(slack_params)
+
+    if @note.save
+      render json: { text: 'Note created, yo!' }, status: :created
     else
       render json: @note.errors, status: :unprocessable_entity
     end
@@ -49,8 +68,16 @@ class NotesController < ApplicationController
     end
   end
 
+  def slack_note_params
+    params.permit(:team_domain, :user_name, :text, :token)
+  end
+
   def note_params
     params.require(:note).permit(:message, :color)
+  end
+
+  def authorize_slack
+    render_rejection unless slack_note_params[:token] == Rails.application.secrets.slack_token
   end
 
   def authorize_owner
