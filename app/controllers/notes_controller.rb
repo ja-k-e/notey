@@ -31,8 +31,8 @@ class NotesController < ApplicationController
     text = text.gsub('notey ', '')
     color = text.match(/\A#[0-9a-fA-Z]+ /)
     if color
-      text = text.gsub(color, '')
-      color = color.delete(' ')
+      text = text.gsub(color[0], '')
+      color = color[0].delete(' ')
     else
       color = '#FFF'
     end
