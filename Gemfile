@@ -8,7 +8,8 @@ gem 'spring', group: :development
 
 gem 'active_model_serializers', '~> 0.10.0.rc2'
 
-gem 'sqlite3'
+gem 'sqlite3', group: [:development, :test]
+gem 'pg', group: :production
 
 gem 'hashid-rails'
 
