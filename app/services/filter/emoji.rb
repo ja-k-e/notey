@@ -6,6 +6,10 @@ module Filter
       filter_emoji
     end
 
+    def text
+      @text
+    end
+
     private
 
     def filter_emoji
