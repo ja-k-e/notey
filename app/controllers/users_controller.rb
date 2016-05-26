@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :authorize, only: [:create, :update]
+  before_action :authorize_admin, only: [:destroy]
   before_action :authorize_owner, only: [:update]
   before_action :set_user, only: [:show, :update, :destroy]
 
@@ -45,7 +46,7 @@ class UsersController < ApplicationController
     begin
       @user = User.find_by_username(params[:username])
     rescue
-      render_not_found
+      render_not_found('User', params[:username])
     end
   end
 

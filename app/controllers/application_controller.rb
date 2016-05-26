@@ -1,6 +1,4 @@
 class ApplicationController < ActionController::API
-  before_action :authorize_admin, only: [:destroy]
-
   def current_user
     return false unless params[:auth]
     @current_user ||= User.find_by_username(params[:auth][:username]) if params[:auth][:username]
@@ -30,7 +28,7 @@ class ApplicationController < ActionController::API
     render json: { error: 'you aint auth\'d, yo.' }, status: :unauthorized and return
   end
 
-  def render_not_found
-    render json: { error: 'doesn\'t exist, yo.' }, status: :not_found and return
+  def render_not_found(model, param)
+    render json: { error: "#{model} '#{param}' doesn't exist, yo." }, status: :not_found and return
   end
 end

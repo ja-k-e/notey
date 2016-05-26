@@ -1,7 +1,7 @@
 class NotesController < ApplicationController
   before_action :authorize, only: [:create, :update]
-  before_action :authorize_owner, only: [:update]
   before_action :set_note, only: [:show, :update, :destroy]
+  before_action :authorize_owner, only: [:update, :destroy]
 
   def index
     @notes = Note.all.order('created_at DESC')
@@ -43,9 +43,9 @@ class NotesController < ApplicationController
 
   def set_note
     begin
-      @note = Note.find_by_hasid(params[:hashid])
+      @note = Note.find_by_hashid(params[:hashid])
     rescue
-      render_not_found
+      render_not_found('Note', params[:hashid])
     end
   end
 
@@ -54,6 +54,7 @@ class NotesController < ApplicationController
   end
 
   def authorize_owner
+    current_user
     @current_user.admin || @current_user == @note.user
   end
 end
