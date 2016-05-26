@@ -27,10 +27,19 @@ class NotesController < ApplicationController
   def slack
     @current_user = User.find_or_create_by(username: slack_note_params[:team_domain])
 
+    text = slack_note_params[:text]
+    color = text.match(/\A#[0-9a-fA-Z]+ /)
+    if color
+      text = text.gsub(color, '')
+      color = color.delete(' ')
+    else
+      color = '#FFF'
+    end
+
     slack_params = {
       slack_user: slack_note_params[:user_name],
-      message: slack_note_params[:text],
-      color: '#FFF'
+      message: text,
+      color: color
     }
 
     @note = @current_user.notes.new(slack_params)
