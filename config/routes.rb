@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  root to: 'notes#index'
+
   scope path: 'users' do
     get    '/'          => 'users#index'
     post   '/'          => 'users#create'

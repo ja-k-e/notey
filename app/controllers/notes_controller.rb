@@ -9,7 +9,6 @@ class NotesController < ApplicationController
     render json: @notes
   end
 
-  # GET /notes/1
   def show
     render json: @note
   end
@@ -43,7 +42,11 @@ class NotesController < ApplicationController
   private
 
   def set_note
-    @note = Note.find_by_hashid(params[:hashid])
+    begin
+      @note = Note.find_by_hasid(params[:hashid])
+    rescue
+      render_not_found
+    end
   end
 
   def note_params

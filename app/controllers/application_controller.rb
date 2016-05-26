@@ -14,7 +14,7 @@ class ApplicationController < ActionController::API
   end
 
   def authorize_admin
-    render_rejection unless @current_user.admin
+    render_rejection unless current_user && @current_user.admin
   end
 
   private
@@ -31,5 +31,9 @@ class ApplicationController < ActionController::API
 
   def render_rejection
     render json: { error: 'you aint auth\'d, yo.' }, status: :unauthorized and return
+  end
+
+  def render_not_found
+    render json: { error: 'doesn\'t exist, yo.' }, status: :not_found and return
   end
 end
