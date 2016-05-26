@@ -2,14 +2,10 @@
 
 one:
   username: MyString
-  encrypted_password: MyString
-  salt: MyString
   admin: false
   api_key: MyString
 
 two:
   username: MyString
-  encrypted_password: MyString
-  salt: MyString
   admin: false
   api_key: MyString

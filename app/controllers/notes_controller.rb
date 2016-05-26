@@ -50,7 +50,7 @@ class NotesController < ApplicationController
   end
 
   def note_params
-    params.require(:note).permit(:message)
+    params.require(:note).permit(:message, :color)
   end
 
   def authorize_owner

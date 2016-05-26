@@ -2,6 +2,8 @@
 
 one:
   message: MyString
+  color: MyString
 
 two:
   message: MyString
+  color: MyString

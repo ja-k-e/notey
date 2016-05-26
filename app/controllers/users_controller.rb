@@ -50,7 +50,7 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:username, :password, :api_key)
+    params.require(:user).permit(:username, :api_key)
   end
 
   def authorize_owner

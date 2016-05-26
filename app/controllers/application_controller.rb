@@ -4,8 +4,6 @@ class ApplicationController < ActionController::API
   def current_user
     return false unless params[:auth]
     @current_user ||= User.find_by_username(params[:auth][:username]) if params[:auth][:username]
-    return false unless @current_user && @current_user.authenticate(params[:auth][:password])
-    true
   end
   helper_method :current_user
 
@@ -20,11 +18,10 @@ class ApplicationController < ActionController::API
   private
 
   def auth_params
-    params.require(:auth).permit(:username, :password, :api_key)
+    params.require(:auth).permit(:username, :api_key)
   end
 
   def valid_secret
-    return true if @current_user.admin
     return false unless params[:auth]
     params[:auth][:api_key] == @current_user.api_key
   end

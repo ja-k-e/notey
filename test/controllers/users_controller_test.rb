@@ -14,8 +14,6 @@ class UsersControllerTest < ActionController::TestCase
   test 'should create user' do
     assert_difference('User.count') do
       post :create, user: {
-        encrypted_password: @user.encrypted_password,
-        salt: @user.salt,
         username: @user.username }
     end
 
@@ -29,8 +27,6 @@ class UsersControllerTest < ActionController::TestCase
 
   test 'should update user' do
     put :update, id: @user, user: {
-      encrypted_password: @user.encrypted_password,
-      salt: @user.salt,
       username: @user.username }
     assert_response 204
   end

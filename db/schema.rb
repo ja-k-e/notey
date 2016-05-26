@@ -15,20 +15,18 @@ ActiveRecord::Schema.define(version: 20160526000947) do
 
   create_table "notes", force: :cascade do |t|
     t.string   "message"
+    t.string   "color",      limit: 10
     t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
   end
 
   create_table "users", force: :cascade do |t|
     t.string   "username"
-    t.string   "encrypted_password"
-    t.string   "salt"
-    t.string   "password_digest"
     t.string   "api_key"
-    t.boolean  "admin",              default: false
-    t.datetime "created_at",                         null: false
-    t.datetime "updated_at",                         null: false
+    t.boolean  "admin",      default: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
   end
 
   add_index "users", ["username"], name: "index_users_on_username", unique: true

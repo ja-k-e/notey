@@ -1,5 +1,5 @@
 class NoteSerializer < ActiveModel::Serializer
-  attributes :message, :hashid
+  attributes :message, :color, :hashid
 
   belongs_to :user
 end
