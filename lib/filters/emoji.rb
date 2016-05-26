@@ -1,4 +1,4 @@
-module Filter
+module Filters
   class Emoji
     def initialize(text)
       @emoji_index = ::Emoji::Index.new
@@ -13,6 +13,9 @@ module Filter
     private
 
     def filter_emoji
+      @text = @text
+              .gsub(':thumbsup:', ':thumbs_up_sign:')
+              .gsub(':+1:', ':thumbs_up_sign:')
       matches = @text.scan(/:[a-z0-9_\+-]+?:/)
       return unless matches
       matches.each do |match|

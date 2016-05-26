@@ -3,4 +3,8 @@ class Note < ActiveRecord::Base
 
   validates :message, presence: true
   validates :color, format: /\A#[a-fA-F0-9]{3}([a-fA-F0-9]{3})?\z/
+
+  def filtered_message
+    ::Filters::Emoji.new(message).text
+  end
 end
