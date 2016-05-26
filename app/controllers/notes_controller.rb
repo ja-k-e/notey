@@ -28,7 +28,7 @@ class NotesController < ApplicationController
     @current_user = User.find_or_create_by(username: slack_note_params[:team_domain])
 
     text = slack_note_params[:text]
-    text = text.delete('notey ')
+    text = text.gsub('notey ', '')
     color = text.match(/\A#[0-9a-fA-Z]+ /)
     if color
       text = text.gsub(color, '')
