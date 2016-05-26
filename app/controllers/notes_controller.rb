@@ -29,7 +29,7 @@ class NotesController < ApplicationController
 
     text = slack_note_params[:text]
     text = text.gsub('notey ', '')
-    text = Filter::Emoji.new(text).text
+    text = Filters::Emoji.new(text).text
     color = text.match(/\A#[0-9a-fA-Z]+ /)
     if color
       text = text.gsub(color[0], '')
