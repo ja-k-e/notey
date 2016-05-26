@@ -5,7 +5,7 @@ class UsersController < ApplicationController
   before_action :set_user, only: [:show, :update, :destroy]
 
   def index
-    @users = User.all.order('created_at DESC')
+    @users = User.all.order('created_at DESC').limit(20)
 
     render json: @users
   end

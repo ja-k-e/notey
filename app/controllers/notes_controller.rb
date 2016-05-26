@@ -4,7 +4,7 @@ class NotesController < ApplicationController
   before_action :authorize_owner, only: [:update, :destroy]
 
   def index
-    @notes = Note.all.order('created_at DESC')
+    @notes = Note.all.order('created_at DESC').limit(20)
 
     render json: @notes
   end
