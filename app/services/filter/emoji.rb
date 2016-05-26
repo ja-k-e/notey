@@ -13,7 +13,7 @@ module Filter
     private
 
     def filter_emoji
-      matches = @text.scan(/:[a-z0-9_]+?:/)
+      matches = @text.scan(/:[a-z0-9_\+-]+?:/)
       return unless matches
       matches.each do |match|
         clean = match.gsub(/:/, '')
