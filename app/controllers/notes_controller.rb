@@ -31,7 +31,7 @@ class NotesController < ApplicationController
 
     image = text.match(%r(https?:\/\/[^ ]+\.(jpg|gif|png)))
     if image
-      text = text.gsub(image[0], '')
+      text = text.gsub(image[0], '').gsub('<>', '')
       image = image[0]
     else
       image = nil
