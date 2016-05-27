@@ -124,3 +124,5 @@ Set the webhook url to `http://your-app.com/slack`.
 Add the Slack token to your production env variable `SLACK_TOKENS`, and be sure that the value is an array `['SLACK_TEAM_1_TOKEN', 'SLACK_TEAM_2_TOKEN']`.
 
 You can customize the response in `NotesController#slack`.
+
+By default, notey looks for a color at the beginning of a string and an image url in the entire string.
