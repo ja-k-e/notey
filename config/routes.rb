@@ -19,5 +19,6 @@ Rails.application.routes.draw do
     delete '/:hashid' => 'notes#destroy'
   end
 
+  get    '/keys'      => 'users#keys'
   post   '/slack'   => 'notes#slack'
 end

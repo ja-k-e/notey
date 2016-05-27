@@ -10,7 +10,7 @@ class ApplicationController < ActionController::API
   end
 
   def authorize_admin
-    render_rejection unless current_user && @current_user.admin
+    render_rejection unless @current_user && @current_user.admin
   end
 
   def authorize_slack

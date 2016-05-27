@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
-  before_action :authorize, only: [:create, :update]
-  before_action :authorize_admin, only: [:destroy]
+  before_action :authorize, only: [:create, :update, :keys, :destroy]
+  before_action :authorize_admin, only: [:destroy, :keys]
   before_action :authorize_owner, only: [:update]
   before_action :set_user, only: [:show, :update, :destroy]
 
@@ -8,6 +8,12 @@ class UsersController < ApplicationController
     @users = User.all.order('created_at DESC').limit(20)
 
     render json: @users
+  end
+
+  def keys
+    @keys = UserKeys.new.keys
+
+    render json: @keys
   end
 
   def show
@@ -18,7 +24,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
 
     if @user.save
-      render json: @user, status: :created, location: @user
+      render json: @user, status: :created
     else
       render json: @user.errors, status: :unprocessable_entity
     end
