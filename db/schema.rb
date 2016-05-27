@@ -11,16 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160527181654) do
+ActiveRecord::Schema.define(version: 20160527190623) do
 
   create_table "notes", force: :cascade do |t|
-    t.string   "message"
+    t.string   "message",    limit: 150
     t.string   "color",      limit: 10
     t.integer  "user_id"
-    t.datetime "created_at",            null: false
-    t.datetime "updated_at",            null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
     t.string   "slack_user"
-    t.string   "image_url"
+    t.string   "image_url",  limit: 255
   end
 
   create_table "users", force: :cascade do |t|
