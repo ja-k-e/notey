@@ -86,10 +86,6 @@ class NotesController < ApplicationController
     params.require(:note).permit(:message, :color)
   end
 
-  def authorize_slack
-    render_rejection unless slack_note_params[:token] == Rails.application.secrets.slack_token
-  end
-
   def authorize_owner
     current_user
     @current_user.admin || @current_user == @note.user

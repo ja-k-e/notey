@@ -13,6 +13,10 @@ class ApplicationController < ActionController::API
     render_rejection unless current_user && @current_user.admin
   end
 
+  def authorize_slack
+    render_rejection unless valid_slack_token
+  end
+
   private
 
   def auth_params
@@ -22,6 +26,10 @@ class ApplicationController < ActionController::API
   def valid_secret
     return false unless params[:auth]
     params[:auth][:api_key] == @current_user.api_key
+  end
+
+  def valid_slack_token
+    Rails.application.secrets.slack_tokens.include? slack_note_params[:token]
   end
 
   def render_rejection
