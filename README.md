@@ -77,11 +77,13 @@ Index of latest 20 notes.
 
 #### Private
 ##### `POST /notes`
-Create a new note by providing a `message`.
+Create a new note by providing a `message`, optionally providing a hex `color`, or `image_url`.
 
 ```json
 "note": {
-  "message": "Hello World"
+  "message": "Hello World",
+  "color": "#FB0",
+  "image_url": "path/to/image.jpg",
 }
 ```
 
