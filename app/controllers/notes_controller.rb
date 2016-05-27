@@ -46,7 +46,8 @@ class NotesController < ApplicationController
     @note = @current_user.notes.new(slack_params)
 
     if @note.save
-      render json: { text: 'Note created, yo!' }, status: :created
+      render json: {
+        text: 'Note created, yo! View it at jakealbaugh.com/notey' }, status: :created
     else
       render json: @note.errors, status: :unprocessable_entity
     end
