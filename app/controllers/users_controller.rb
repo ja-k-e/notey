@@ -1,8 +1,7 @@
 class UsersController < ApplicationController
-  before_action :authorize, only: [:create, :update, :keys, :destroy]
-  before_action :authorize_admin, only: [:destroy, :keys]
-  before_action :authorize_owner, only: [:update]
-  before_action :set_user, only: [:show, :update, :destroy]
+  before_action :authorize, only: [:create, :keys, :key, :destroy]
+  before_action :authorize_admin, only: [:create, :keys, :key, :destroy]
+  before_action :set_user, only: [:show, :destroy]
 
   def index
     @users = User.all.order('created_at DESC').limit(20)
@@ -16,6 +15,12 @@ class UsersController < ApplicationController
     render json: @keys
   end
 
+  def key
+    @key = UserKeys.new.key(params[:username])
+
+    render json: @key
+  end
+
   def show
     render json: @user, include: ['notes']
   end
@@ -25,16 +30,6 @@ class UsersController < ApplicationController
 
     if @user.save
       render json: @user, status: :created
-    else
-      render json: @user.errors, status: :unprocessable_entity
-    end
-  end
-
-  def update
-    @user = User.find_by_username(params[:username])
-
-    if @user.update(user_params)
-      head :no_content
     else
       render json: @user.errors, status: :unprocessable_entity
     end

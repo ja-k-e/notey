@@ -5,8 +5,6 @@ Rails.application.routes.draw do
     get    '/'          => 'users#index'
     post   '/'          => 'users#create'
     get    '/:username' => 'users#show'
-    put    '/:username' => 'users#update'
-    patch  '/:username' => 'users#update'
     delete '/:username' => 'users#destroy'
   end
 
@@ -19,6 +17,7 @@ Rails.application.routes.draw do
     delete '/:hashid' => 'notes#destroy'
   end
 
-  get    '/keys'      => 'users#keys'
-  post   '/slack'   => 'notes#slack'
+  get    '/keys'           => 'users#keys'
+  get    '/keys/:username' => 'users#key'
+  post   '/slack'          => 'notes#slack'
 end
