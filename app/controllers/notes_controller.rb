@@ -28,6 +28,14 @@ class NotesController < ApplicationController
     @current_user = User.find_or_create_by(username: slack_note_params[:team_domain])
 
     text = slack_note_params[:text]
+
+    image = text.match(%r(https?:\/\/[^ ]+\.(jpg|gif|png)))
+    if image
+      text = text.gsub(image[0], '')
+      image = image[0]
+    else
+      image = nil
+    end
     text = text.gsub('notey ', '')
     color = text.match(/\A#[0-9a-fA-Z]+ /)
     if color
@@ -40,7 +48,8 @@ class NotesController < ApplicationController
     slack_params = {
       slack_user: slack_note_params[:user_name],
       message: text,
-      color: color
+      color: color,
+      image_url: image
     }
 
     @note = @current_user.notes.new(slack_params)
