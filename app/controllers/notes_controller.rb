@@ -56,7 +56,7 @@ class NotesController < ApplicationController
 
     if @note.save
       render json: {
-        text: 'Note created, yo! jakealbaugh.com/notey' }, status: :created
+        text: 'Note created, yo! jakealbaugh.com/wall' }, status: :created
     else
       render json: @note.errors, status: :unprocessable_entity
     end
