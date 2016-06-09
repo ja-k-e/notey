@@ -37,7 +37,8 @@ class NotesController < ApplicationController
       image = nil
     end
     text = text.gsub('notey ', '')
-    color = text.match(/\A#[0-9a-fA-Z]+ /)
+    text = text.gsub('wall ', '')
+    color = text.match(/#[0-9a-fA-Z]+ /)
     if color
       text = text.gsub(color[0], '')
       color = color[0].delete(' ')
