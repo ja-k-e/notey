@@ -38,6 +38,7 @@ class NotesController < ApplicationController
     end
     text = text.gsub('notey ', '')
     text = text.gsub('wall ', '')
+    text = text.gsub(%r(<?https?:\/\/[^ ]+>? ?), '')
     color = text.match(/#[0-9a-fA-Z]+ /)
     if color
       text = text.gsub(color[0], '')
